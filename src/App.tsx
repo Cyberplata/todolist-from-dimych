@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import './App.css';
 import {TasksPropsType, Todolist} from "./Todolist";
 
+type FilteredPropsType = 'All' | 'Active' | 'Completed'
+
 function App() {
 
     const [tasks, setTasks] = useState<TasksPropsType[]>([
@@ -12,11 +14,23 @@ function App() {
     ])
 
     const removeTask = (valueId: number) => {
-        debugger
-        let newTask = tasks.filter(t => t.id !== valueId)
+        const newTask = tasks.filter(t => t.id !== valueId)
 
         setTasks(newTask)
         console.log('hello')
+    }
+
+    const [valueFilter, setValueFilter] = useState<FilteredPropsType>('All')
+
+    const filteredState = (valueButton: string) => {
+        let newFilteredTasks;
+
+        if (valueFilter === valueButton) {
+            newFilteredTasks = valueFilter;
+        }
+
+        setValueFilter(valueFilter)
+        console.log('Hi!!!!!')
     }
 
 
@@ -25,6 +39,7 @@ function App() {
             <Todolist title={"What to learn"}
                       tasks={tasks}
                       removeTask={removeTask}
+                      filteredState={filteredState}
             />
             {/*<Todolist title={"Movies"} tasks={tasks2}/>*/}
             {/*<Todolist title={"Songs"} tasks={tasks3}/>*/}

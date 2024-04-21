@@ -10,11 +10,12 @@ type TodolistPropsType = {
     title: string
     tasks: TasksPropsType[]
     removeTask: (valueId: number) => void
+    filteredState: (value: string) => void
 }
 
 export function Todolist(props: TodolistPropsType) {
 
-    const { title, tasks, removeTask } = props;
+    const { title, tasks, removeTask, filteredState } = props;
 
     return (
         <div>
@@ -48,9 +49,9 @@ export function Todolist(props: TodolistPropsType) {
                 {/*</li>*/}
             </ul>
             <div>
-                <button>All</button>
-                <button>Active</button>
-                <button>Completed</button>
+                <button onClick={() => {filteredState("All")}}>All</button>
+                <button onClick={() => {filteredState("Active")}}>Active</button>
+                <button onClick={() => {filteredState("Completed")}}>Completed</button>
             </div>
         </div>
     )
