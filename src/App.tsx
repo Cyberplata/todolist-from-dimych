@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {TasksPropsType, Todolist} from "./Todolist";
 
-type FilteredPropsType = 'All' | 'Active' | 'Completed'
+export type FilterValuesType = 'All' | 'Active' | 'Completed'
 
 function App() {
 
@@ -13,6 +13,8 @@ function App() {
         { id: 4, title: "Redux", isDone: false}
     ])
 
+    const [valueFilter, setValueFilter] = useState<FilterValuesType>('All')
+
     const removeTask = (valueId: number) => {
         const newTask = tasks.filter(t => t.id !== valueId)
 
@@ -20,26 +22,27 @@ function App() {
         console.log('hello')
     }
 
-    const [valueFilter, setValueFilter] = useState<FilteredPropsType>('All')
-
-    const filteredState = (valueButton: string) => {
-        let newFilteredTasks;
-
-        if (valueFilter === valueButton) {
-            newFilteredTasks = valueFilter;
-        }
-
-        setValueFilter(valueFilter)
-        console.log('Hi!!!!!')
+    let tasksForTodolist = tasks;
+    if (valueFilter === "Active") {
+        tasksForTodolist = tasks.filter(t => !t.isDone)
+    }
+    if (valueFilter === "Completed") {
+        tasksForTodolist = tasks.filter(t => t.isDone)
     }
 
+    const changeFilter = (value: FilterValuesType) => {
+        console.log('!hi')
+        setValueFilter(value)
+    }
 
     return (
         <div className="App">
             <Todolist title={"What to learn"}
-                      tasks={tasks}
+                      tasks={tasksForTodolist}
                       removeTask={removeTask}
-                      filteredState={filteredState}
+                      changeFilter={changeFilter}
+                      // newFilteredTasks={newFilteredTasks}
+                      // filteredState={filteredState}
             />
             {/*<Todolist title={"Movies"} tasks={tasks2}/>*/}
             {/*<Todolist title={"Songs"} tasks={tasks3}/>*/}
