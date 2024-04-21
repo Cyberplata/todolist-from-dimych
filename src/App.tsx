@@ -4,22 +4,24 @@ import {TasksPropsType, Todolist} from "./Todolist";
 
 function App() {
 
-    let tasks1: TasksPropsType[] = [
+    const tasks1: TasksPropsType[] = [
         { id: 1, title: "CSS&HTML", isDone: true},
         { id: 2, title: "JS", isDone: true},
-        { id: 3, title: "React", isDone: false}
+        { id: 3, title: "React", isDone: false},
+        { id: 4, title: "Redux", isDone: false}
     ]
 
-    let tasks2: TasksPropsType[] = [
+    const tasks2: TasksPropsType[] = [
         { id: 1, title: "Terminator", isDone: true},
         { id: 2, title: "XXX", isDone: false},
-        { id: 3, title: "Shutter Island", isDone: true}
+        // { id: 3, title: "Shutter Island", isDone: true}
     ]
 
-    let tasks3: TasksPropsType[] = [
-        { id: 1, title: "Terminator", isDone: true},
-        { id: 2, title: "XXX", isDone: false},
-        { id: 3, title: "Shutter Island", isDone: true}
+    const tasks3: TasksPropsType[] = [
+        { id: 1, title: "Happy song", isDone: true},
+        { id: 2, title: "Love", isDone: false},
+        { id: 3, title: "Good bby", isDone: true},
+        { id: 4, title: "Bad gay", isDone: true}
     ]
 
     return (
