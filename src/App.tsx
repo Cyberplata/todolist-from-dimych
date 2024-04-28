@@ -2,6 +2,11 @@ import React, {useState} from 'react';
 import './App.css';
 import {TasksPropsType, Todolist} from "./Todolist";
 
+// C - Creat
+// R - Read
+// U - Update
+// D - Delete
+
 export type FilterValuesType = 'All' | 'Active' | 'Completed'
 
 function App() {
@@ -31,7 +36,7 @@ function App() {
     }
 
     const changeFilter = (value: FilterValuesType) => {
-        console.log('!hi')
+        console.log('hi!!!')
         setValueFilter(value)
     }
 
