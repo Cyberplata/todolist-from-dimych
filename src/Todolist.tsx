@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 import {FilterValuesType} from "./App";
 
 export type TasksPropsType = {
@@ -12,18 +12,40 @@ type TodolistPropsType = {
     tasks: TasksPropsType[]
     removeTask: (valueId: string) => void
     changeFilter: (value: FilterValuesType) => void
+    addTask: (title: string) => void
 }
 
 export function Todolist(props: TodolistPropsType) {
 
-    const { title, tasks, removeTask, changeFilter } = props;
+    const {title, tasks, removeTask, changeFilter, addTask} = props;
+
+    // UI
+    const [newTaskTitle, setNewTaskTitle] = useState('')
+
+    // Handlers
+    const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setNewTaskTitle(e.currentTarget.value)
+    }
+    const onChangeButtonHandler = () => {
+        addTask(newTaskTitle)
+        setNewTaskTitle('')
+    }
+    const onKeyDownAddTaskHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            onChangeButtonHandler()
+        }
+        // console.log(e)
+    }
 
     return (
         <div>
             <h3>{title}</h3>
             <div>
-                <input/>
-                <button>+</button>
+                <input value={newTaskTitle}
+                       onChange={onChangeInputHandler}
+                       onKeyDown={onKeyDownAddTaskHandler}
+                />
+                <button onClick={onChangeButtonHandler}>+</button>
             </div>
 
             <ul>
@@ -37,9 +59,18 @@ export function Todolist(props: TodolistPropsType) {
                 }
             </ul>
             <div>
-                <button onClick={() => {changeFilter("All")}}>All</button>
-                <button onClick={() => {changeFilter("Active")}}>Active</button>
-                <button onClick={() => {changeFilter("Completed")}}>Completed</button>
+                <button onClick={() => {
+                    changeFilter("All")
+                }}>All
+                </button>
+                <button onClick={() => {
+                    changeFilter("Active")
+                }}>Active
+                </button>
+                <button onClick={() => {
+                    changeFilter("Completed")
+                }}>Completed
+                </button>
             </div>
         </div>
     )

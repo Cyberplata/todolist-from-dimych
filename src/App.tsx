@@ -19,14 +19,24 @@ function App() {
         { id: v1(), title: "Redux", isDone: false},
         { id: v1(), title: "Rest API", isDone: false}
     ]);
-    console.log(tasks)
+    // console.log(tasks)
 
     const [valueFilter, setValueFilter] = useState<FilterValuesType>('All')
 
     const removeTask = (valueId: string) => {
         const newTask = tasks.filter(t => t.id !== valueId)
         setTasks(newTask)
-        console.log('hello')
+        // console.log('hello')
+    }
+
+    const addTask = (title: string) => {
+        let newTask = {
+            id: v1(),
+            title: title,
+            isDone: true
+        }
+        let newTasks = [newTask, ...tasks];
+        setTasks(newTasks)
     }
 
     let tasksForTodolist = tasks;
@@ -38,7 +48,7 @@ function App() {
     }
 
     const changeFilter = (value: FilterValuesType) => {
-        console.log('hi!!!')
+        // console.log('hi!!!')
         setValueFilter(value)
     }
 
@@ -48,6 +58,7 @@ function App() {
                       tasks={tasksForTodolist}
                       removeTask={removeTask}
                       changeFilter={changeFilter}
+                      addTask={addTask}
                       // newFilteredTasks={newFilteredTasks}
                       // filteredState={filteredState}
             />
