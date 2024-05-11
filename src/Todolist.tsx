@@ -14,10 +14,11 @@ type TodolistPropsType = {
     changeFilter: (value: FilterValuesType) => void
     addTask: (title: string) => void
     changeTaskStatus: (taskId: string, isDone: boolean) => void
+    valueFilter: FilterValuesType
 }
 
 export function Todolist(props: TodolistPropsType) {
-    const {title, tasks, removeTask, changeFilter, addTask, changeTaskStatus} = props;
+    const {title, tasks, removeTask, changeFilter, addTask, changeTaskStatus, valueFilter} = props;
 
     // UI
     const [newTaskTitle, setNewTaskTitle] = useState('')
@@ -77,9 +78,9 @@ export function Todolist(props: TodolistPropsType) {
                 }
             </ul>
             <div>
-                <button onClick={onClickAllHandler}>All</button>
-                <button onClick={onClickActiveHandler}>Active</button>
-                <button onClick={onClickCompletedHandler}>Completed</button>
+                <button className={ valueFilter === "All" ? "active-filter" : ""} onClick={onClickAllHandler}>All</button>
+                <button className={ valueFilter === "Active" ? "active-filter" : ""} onClick={onClickActiveHandler}>Active</button>
+                <button className={ valueFilter === "Completed" ? "active-filter" : ""} onClick={onClickCompletedHandler}>Completed</button>
             </div>
         </div>
     )

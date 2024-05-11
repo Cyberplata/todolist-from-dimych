@@ -19,8 +19,6 @@ function App() {
         { id: v1(), title: "Redux", isDone: false},
         { id: v1(), title: "Rest API", isDone: false}
     ]);
-    // console.log(tasks)
-
     const [valueFilter, setValueFilter] = useState<FilterValuesType>('All')
 
     const removeTask = (valueId: string) => {
@@ -68,6 +66,7 @@ function App() {
                       changeFilter={changeFilter}
                       addTask={addTask}
                       changeTaskStatus={changeStatus}
+                      valueFilter={valueFilter}
             />
         </div>
     );

@@ -1,6 +1,10 @@
 .App {
     padding: 30px;
     display: flex;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*box-sizing: border-box;*/
+    /*height: 100vh;*/
 }
 
 .App > div {
@@ -13,4 +17,8 @@
 
 .error-message {
     color: red;
+}
+
+.active-filter {
+    background-color: #8cffc0;
 }
