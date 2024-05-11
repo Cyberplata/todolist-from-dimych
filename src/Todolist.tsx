@@ -21,13 +21,14 @@ export function Todolist(props: TodolistPropsType) {
 
     // UI
     const [newTaskTitle, setNewTaskTitle] = useState('')
+    const [error, setError] = useState<string | null>(null)
 
     // Handlers
     const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setNewTaskTitle(e.currentTarget.value)
     }
     const onChangeButtonHandler = () => {
-        if (newTaskTitle.trim() !== '' && newTaskTitle !== 'kakashka') {
+        if (newTaskTitle.trim() !== '') {
             addTask(newTaskTitle.trim())
             setNewTaskTitle('')
         }
@@ -49,8 +50,10 @@ export function Todolist(props: TodolistPropsType) {
                 <input value={newTaskTitle}
                        onChange={onChangeInputHandler}
                        onKeyDown={onKeyDownAddTaskHandler}
+                       className={error ? "error" : ""}
                 />
                 <button onClick={onChangeButtonHandler}>+</button>
+                {error && <div className="error-message">{error}</div>}
             </div>
 
             <ul>
