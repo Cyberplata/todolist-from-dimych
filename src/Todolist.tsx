@@ -16,7 +16,6 @@ type TodolistPropsType = {
 }
 
 export function Todolist(props: TodolistPropsType) {
-
     const {title, tasks, removeTask, changeFilter, addTask} = props;
 
     // UI
@@ -34,8 +33,10 @@ export function Todolist(props: TodolistPropsType) {
         if (e.key === 'Enter') {
             onChangeButtonHandler()
         }
-        // console.log(e)
     }
+    const onClickAllHandler = () => changeFilter('All')
+    const onClickActiveHandler = () => changeFilter('Active')
+    const onClickCompletedHandler = () => changeFilter('Completed')
 
     return (
         <div>
@@ -50,27 +51,20 @@ export function Todolist(props: TodolistPropsType) {
 
             <ul>
                 {
-                    tasks.map(t => <li key={t.id}>
+                    tasks.map(t => {
+                        const onRemoveHandler = () => removeTask(t.id)
+                        return <li key={t.id}>
                             <input type="checkbox" checked={t.isDone}/>
                             <span>{t.title}</span>
-                            <button onClick={() => removeTask(t.id)}>x</button>
+                            <button onClick={onRemoveHandler}>x</button>
                         </li>
-                    )
+                    })
                 }
             </ul>
             <div>
-                <button onClick={() => {
-                    changeFilter("All")
-                }}>All
-                </button>
-                <button onClick={() => {
-                    changeFilter("Active")
-                }}>Active
-                </button>
-                <button onClick={() => {
-                    changeFilter("Completed")
-                }}>Completed
-                </button>
+                <button onClick={onClickAllHandler}>All</button>
+                <button onClick={onClickActiveHandler}>Active</button>
+                <button onClick={onClickCompletedHandler}>Completed</button>
             </div>
         </div>
     )
