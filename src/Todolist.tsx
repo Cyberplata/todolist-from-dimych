@@ -1,7 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 import {FilterValuesType} from "./App";
 import {v1} from "uuid";
-import {log} from "node:util";
 
 export type TasksPropsType = {
     id: string
@@ -56,10 +55,10 @@ export function Todolist(props: TodolistPropsType) {
                 {
                     tasks.map(t => {
                         const onRemoveHandler = () => removeTask(t.id)
-                        const onChangeHandler = () => console.log(t.id, 'want to change!')
+                        const onChangeHandler = () => changeStatus(t.id, t.isDone)
 
                         return <li key={t.id}>
-                            <input type="checkbox" checked={t.isDone} onChange={onChangeHandler}/>
+                            <input type="checkbox" onChange={onChangeHandler}/>
                             <span>{t.title}</span>
                             <button onClick={onRemoveHandler}>x</button>
                         </li>
