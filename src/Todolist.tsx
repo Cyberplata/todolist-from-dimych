@@ -31,6 +31,8 @@ export function Todolist(props: TodolistPropsType) {
         if (newTaskTitle.trim() !== '') {
             addTask(newTaskTitle.trim())
             setNewTaskTitle('')
+        } else {
+            setError("Title is required")
         }
 
     }
