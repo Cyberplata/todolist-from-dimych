@@ -27,14 +27,11 @@ export function Todolist(props: TodolistPropsType) {
         setNewTaskTitle(e.currentTarget.value)
     }
     const onChangeButtonHandler = () => {
-        if (newTaskTitle.trim() === '') {
-            return;
+        if (newTaskTitle.trim() !== '' && newTaskTitle !== 'kakashka') {
+            addTask(newTaskTitle.trim())
+            setNewTaskTitle('')
         }
-        if (newTaskTitle === 'kakashka') {
-            return;
-        }
-        addTask(newTaskTitle.trim())
-        setNewTaskTitle('')
+
     }
     const onKeyDownAddTaskHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
