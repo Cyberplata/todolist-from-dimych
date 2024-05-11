@@ -37,6 +37,7 @@ export function Todolist(props: TodolistPropsType) {
 
     }
     const onKeyDownAddTaskHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+        setError(null) // убираем ошибку передав в стейт null
         if (e.key === 'Enter') {
             onChangeButtonHandler()
         }
